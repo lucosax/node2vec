@@ -85,7 +85,20 @@ def learn_embeddings(walks):
 	'''
 	walks = [map(str, walk) for walk in walks]
 	model = Word2Vec(walks, size=args.dimensions, window=args.window_size, min_count=0, sg=1, workers=args.workers, iter=args.iter)
-	model.save_word2vec_format(args.output)
+	#model.save_word2vec_format(args.output)
+	"""
+		Traceback (most recent call last):
+	  File "src/main.py", line 104, in <module>
+	    main(args)
+	  File "src/main.py", line 100, in main
+	    learn_embeddings(walks)
+	  File "src/main.py", line 88, in learn_embeddings
+	    model.save_word2vec_format(args.output)
+	  File "/Users/pca1800101330/Library/Python/2.7/lib/python/site-packages/gensim/models/word2vec.py", line 1454, in save_word2vec_format
+	    raise DeprecationWarning("Deprecated. Use model.wv.save_word2vec_format instead.")
+	DeprecationWarning: Deprecated. Use model.wv.save_word2vec_format instead.
+	"""
+	model.wv.save_word2vec_format(args.output)
 	
 	return
 
